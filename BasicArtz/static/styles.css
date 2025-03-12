@@ -1,0 +1,310 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo general */
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    text-align: center;
+}
+
+/* Estilo del header */
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Contenedor principal */
+main {
+    max-width: 600px; /* Reducido para centrar mejor los productos */
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================== */
+/* 🔹 ESTILO DEL CATÁLOGO EN COLUMNA 🔹 */
+/* ========================== */
+.productos {
+    display: flex;
+    flex-direction: column; /* Hace que los productos estén en columna */
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.producto {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 500px; /* Para que no ocupen todo el ancho */
+}
+
+.producto img {
+    width: 100%;  /* La imagen ocupa todo el ancho disponible dentro del contenedor */
+    max-width: 300px;  /* Limita el ancho máximo de la imagen */
+    height: auto;  /* Mantiene la proporción de la imagen */
+    max-height: 300px;  /* Limita la altura máxima de la imagen */
+    object-fit: contain;  /* Asegura que la imagen se ajuste sin recortes */
+    border-radius: 8px;
+    margin-top: 10px;
+    overflow: hidden;  /* Previene el desbordamiento de la imagen */
+}
+
+.producto h3 {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.producto p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* =============================== */
+/* 🔹 FORMULARIO DE AGREGAR AL CARRITO 🔹 */
+/* =============================== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+input {
+    width: 50px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #ff6600;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #cc5200;
+}
+
+/* =============================== */
+/* 🔹 BOTÓN VER CARRITO 🔹 */
+/* =============================== */
+.carrito-btn {
+    display: inline-block;
+    background-color: #ffc107;
+    color: black;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.carrito-btn:hover {
+    background-color: #e0a800;
+}
+
+/* ========================== */
+/* 🔹 TABLAS 🔹 */
+/* ========================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+/* ========================== */
+/* 🔹 FOOTER 🔹 */
+/* ========================== */
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+/* Estilo del contenedor */
+.form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Estilo de los inputs */
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Botón estilizado */
+.btn {
+    background: #ff6600;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.btn:hover {
+    background: #e65c00;
+}
+
+/* Estilos del texto de enlaces */
+p {
+    margin-top: 10px;
+}
+
+
+
+
+a:hover {
+    text-decoration: underline;
+}
+/* Estilo para el dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover {
+    background-color: #0056b3;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+.alert {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.alert-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.alert-danger {
+    background-color: #dc3545;
+    color: white;
+}
+/* CSS para ocultar el mensaje flash después de 5 segundos */
+.flash-messages .alert {
+    opacity: 1;
+    transition: opacity 1s ease-out;  /* Desvanecimiento de 1 segundo */
+}
+
+.flash-messages .alert.fade {
+    opacity: 0;  /* Hacerlo invisible */
+    display: none; /* Opcional, si quieres que desaparezca completamente */
+}
+.perfil-container {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 600px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.perfil-container h2 {
+    text-align: center;
+}
+
+.perfil-container p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.perfil-container .btn {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #ff6600;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+}

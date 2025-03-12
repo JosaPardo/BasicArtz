@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Panel de Administración</h2>
+
+    <!-- Botón para volver al inicio -->
+    <div class="d-flex justify-content-between mb-3">
+        <a href="{{ url_for('index') }}" class="btn btn-primary">🏠 Volver al Inicio</a>
+        <a href="{{ url_for('add_product') }}" class="btn btn-primary">🏠 Añadir Producto</a>
+        <div class="d-flex justify-content-between mb-3">
+            <a href="{{ url_for('ver_validaciones') }}" class="btn btn-info">👀 Ver Validaciones</a>
+        </div>
+        
+        <a href="{{ url_for('admin_panel') }}" class="btn btn-secondary">🔄 Refrescar</a>
+    </div>
+
+    <!-- Botón para añadir una nueva categoría -->
+    <div class="d-flex justify-content-between mb-3">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addCategoryModal">📦 Añadir Categoría</button>
+    </div>
+
+    <!-- Tabla de productos -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Imagen</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td>{{ producto[0] }}</td>
+                    <td>{{ producto[1] }}</td>
+                    <td>${{ producto[2] }}</td>
+                    <td>
+                        <img src="{{ url_for('static', filename='uploads/' + producto[3]) }}" width="50" class="rounded">
+                    </td>
+                    <td>
+                        <span class="badge {% if producto[4] == 'activo' %}bg-success{% else %}bg-warning{% endif %}">
+                            {{ producto[4] | capitalize }}
+                        </span>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('pausar_producto', producto_id=producto[0]) }}" class="btn btn-warning btn-sm">
+                            {% if producto[4] == 'activo' %}⏸️ Pausar{% else %}▶️ Activar{% endif %}
+                        </a>
+                        <a href="{{ url_for('eliminar_producto', producto_id=producto[0]) }}" class="btn btn-danger btn-sm"
+                           onclick="return confirm('¿Estás seguro de eliminar este producto?');">
+                            🗑️ Eliminar
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal para añadir una nueva categoría -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCategoryModalLabel">Añadir Nueva Categoría</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulario para añadir una categoría -->
+        <form method="POST" action="{{ url_for('add_category') }}">
+            <div class="mb-3">
+                <label for="categoryName" class="form-label">Nombre de la Categoría</label>
+                <input type="text" class="form-control" id="categoryName" name="category_name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Añadir Categoría</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

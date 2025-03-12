@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Registro</h2>
+    <form action="{{ url_for('submit') }}" method="POST">
+        <input type="text" name="txtName" placeholder="Nombre" required class="input-field">
+        <input type="text" name="txtSurname" placeholder="Apellido" required class="input-field">
+        <input type="text" name="txtDNI" placeholder="DNI" required class="input-field">
+        <input type="email" name="txtMail" placeholder="Correo electrónico" required class="input-field">
+        <input type="password" name="txtPassword" placeholder="Contraseña" required class="input-field">
+        <button type="submit" class="btn">Registrarse</button>
+    </form>
+    <p>¿Ya tienes una cuenta? <a style="text-decoration: none; color: #ff6600;" href="{{ url_for('login') }}">Inicia sesión aquí</a></p>
+</div>
+
+{% if 'codigo_verificacion' in session and not session.get('codigo_verificado') %}
+    <div class="form-container">
+        <h2>Verificación de Correo</h2>
+        <form action="{{ url_for('verificar_codigo') }}" method="POST">
+            <input type="text" name="codigo_verificacion" placeholder="Ingresa el código de verificación" required class="input-field">
+            <button type="submit" class="btn">Verificar</button>
+        </form>
+        <p>Revisa tu correo electrónico para obtener el código.</p>
+    </div>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Basic Artz{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Basic Artz</h1>
+        <nav>
+            <div style="text-align: right; margin: 10px;">
+                <a href="{{ url_for('carrito') }}" class="carrito-btn">🛒 Ver Carrito</a>
+            </div>
+
+            <a href="{{ url_for('index') }}">Inicio</a>
+            {% if session['user_role'] == 'admin' %}
+                <a href="{{ url_for('admin_panel') }}">Admin</a>
+            {% endif %}
+
+            <div class="dropdown" style="display: inline-block; margin-right: 10px;">
+                <button class="dropbtn">Categorías</button>
+                <div class="dropdown-content">
+                    {% for categoria in categorias %}
+                        <a href="{{ url_for('categoria', categoria=categoria[0]) }}">{{ categoria[0] }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if session['user_id'] %}
+            <a href="{{ url_for('perfil') }}" class="perfil-btn">Ver Perfil</a>
+                <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Iniciar sesión</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+    <footer style="text-decoration: none; color: white;">
+        <p>&copy; <a style="text-decoration: none; color: white;" href="{{ url_for('basic_artz') }}">Basic Art</a></p>
+    </footer>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var flashMessages = document.querySelectorAll('.flash-messages .alert');
+                flashMessages.forEach(function(message) {
+                setTimeout(function() {
+                    message.classList.add('fade');  
+                }, 5000);  
+            });
+        });
+    </script>
+    
+</body>
+
+</html>

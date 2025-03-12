@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Productos en la categoría: {{ categoria }}</h2>
+    <div>
+        {% for producto in productos %}
+            <div class="producto">
+                <h3>{{ producto[1] }}</h3>
+                <p>Precio: ${{ producto[2] }}</p>
+                <img src="{{ url_for('static', filename='uploads/' + producto[3]) }}" alt="Imagen del producto">
+                <form action="{{ url_for('agregar_al_carrito', producto_id=producto[0]) }}" method="POST">
+                    <input type="number" name="cantidad" value="1" min="1">
+                    <button type="submit">Agregar al carrito</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

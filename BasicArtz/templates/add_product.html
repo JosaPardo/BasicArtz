@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Agregar Producto{% endblock %}
+
+{% block content %}
+    <style>
+        .form-container {
+            max-width: 450px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select, button {
+            width: 100%;
+            height: 40px;  /* Aumenta la altura */
+            padding: 10px;
+            font-size: 16px;  /* Aumenta el tamaño de la fuente */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <div class="form-container">
+        <h2>Agregar Producto</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+
+            <label for="nombre">Nombre del Producto:</label>
+            {{ form.nombre }}
+
+            <label for="precio">Precio:</label>
+            {{ form.precio }}
+
+            <label for="categoria">Categoría:</label>
+            {{ form.categoria }}
+
+            <label for="imagen">Imagen:</label>
+            {{ form.imagen }}
+
+            <button type="submit">Agregar</button>
+        </form>
+    </div>
+{% endblock %}
